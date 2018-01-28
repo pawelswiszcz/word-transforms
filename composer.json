@@ -1,0 +1,21 @@
+{
+  "name": "pawelswiszcz/word-transforms",
+  "description": "Word transformations",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Paweł Świszcz",
+      "email": "p.swiszcz@insee.pl"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "4.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  }
+}
