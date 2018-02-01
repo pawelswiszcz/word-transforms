@@ -23,7 +23,7 @@ class A implements Schema
      */
     public function getLowerTransformation(): array
     {
-        return ['a'];
+        return ['4'];
     }
 
     /**
@@ -31,7 +31,7 @@ class A implements Schema
      */
     public function getUpperTransformation(): array
     {
-        return ['A'];
+        return ['4'];
     }
 
 }
