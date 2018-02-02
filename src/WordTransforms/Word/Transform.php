@@ -41,7 +41,7 @@ class Transform
         foreach ($chars as $char) {
             $letter          = $this->dictionary->getLetter($char);
             $transformedChar =
-                $this->isLower($this) ? $letter->getLowerTransformation() : $letter->getUpperTransformation();
+                $this->isLower($char) ? $letter->getLowerTransformation() : $letter->getUpperTransformation();
             $newString       .= $transformedChar;
         }
 
