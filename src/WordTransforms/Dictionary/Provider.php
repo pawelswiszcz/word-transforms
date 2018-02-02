@@ -26,7 +26,7 @@ class Provider implements DictionaryProvider
     /**
      * @return DictionaryInterface
      */
-    private function buildDictionary()
+    private function buildDictionary() : DictionaryInterface
     {
         $dictionary = new Dictionary();
 
@@ -40,7 +40,7 @@ class Provider implements DictionaryProvider
     /**
      * @return Letter[]
      */
-    private function getLetters()
+    private function getLetters() : array
     {
         return [new A(), new B()];
     }
