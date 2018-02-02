@@ -9,6 +9,7 @@
 namespace WordTransforms\Word;
 
 use WordTransforms\Dictionary\DictionaryInterface;
+use WordTransforms\Dictionary\ProviderInterface;
 
 class Transform
 {
@@ -18,20 +19,20 @@ class Transform
     private $string;
 
     /**
-     * @var DictionaryInterface
+     * @var ProviderInterface
      */
-    private $dictionary;
+    private $dictionaryProvider;
 
     /**
      * Transform constructor.
      *
      * @param string              $string
-     * @param DictionaryInterface $dictionary
+     * @param ProviderInterface $dictionaryProvider
      */
-    public function __construct(string $string, DictionaryInterface $dictionary)
+    public function __construct(string $string, ProviderInterface $dictionaryProvider)
     {
-        $this->string     = $string;
-        $this->dictionary = $dictionary;
+        $this->string             = $string;
+        $this->dictionaryProvider = $dictionaryProvider;
     }
 
     final public function transform(): string
@@ -39,7 +40,7 @@ class Transform
         $chars     = str_split($this->string);
         $newString = '';
         foreach ($chars as $char) {
-            $letter          = $this->dictionary->getLetter($char);
+            $letter          = $this->dictionaryProvider->provide()->getLetter($char);
             $transformedChar =
                 $this->isLower($char) ? $letter->getLowerTransformation() : $letter->getUpperTransformation();
             $newString       .= $transformedChar;
