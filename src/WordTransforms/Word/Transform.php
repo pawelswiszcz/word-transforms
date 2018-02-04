@@ -9,7 +9,9 @@
 namespace WordTransforms\Word;
 
 use WordTransforms\Dictionary\DictionaryInterface;
-use WordTransforms\Dictionary\ProviderInterface;
+use WordTransforms\Dictionary\Provider\ProviderInterface;
+
+use WordTransforms\Letter\Schema as Letter;
 
 class Transform
 {
@@ -26,7 +28,7 @@ class Transform
     /**
      * Transform constructor.
      *
-     * @param string              $string
+     * @param string            $string
      * @param ProviderInterface $dictionaryProvider
      */
     public function __construct(string $string, ProviderInterface $dictionaryProvider)
@@ -40,22 +42,12 @@ class Transform
         $chars     = str_split($this->string);
         $newString = '';
         foreach ($chars as $char) {
-            $letter          = $this->dictionaryProvider->provide()->getLetter($char);
-            $transformedChar =
-                $this->isLower($char) ? $letter->getLowerTransformation() : $letter->getUpperTransformation();
-            $newString       .= $transformedChar;
+
+            $newString .= $this->dictionaryProvider->provide()->transform($char);
+
         }
 
         return $newString;
     }
 
-    /**
-     * @param $char
-     *
-     * @return bool
-     */
-    final private function isLower($char)
-    {
-        return mb_strtolower($char) === $char;
-    }
 }

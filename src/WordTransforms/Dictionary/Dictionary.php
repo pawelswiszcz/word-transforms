@@ -6,14 +6,24 @@
  * Time: 22:58
  */
 
+declare(strict_types=1);
+
 namespace WordTransforms\Dictionary;
 
 use ArrayObject;
 use WordTransforms\Letter\Schema as Letter;
 use InvalidArgumentException;
+use WordTransforms\Letter\Undefined;
 
-class Dictionary extends ArrayObject implements DictionaryInterface
+abstract class Dictionary extends ArrayObject implements DictionaryInterface
 {
+    /**
+     * @param string $char
+     *
+     * @return string
+     */
+    abstract public function transform(string $char): string;
+
     /**
      * @param mixed  $name
      * @param Letter $value
@@ -32,17 +42,34 @@ class Dictionary extends ArrayObject implements DictionaryInterface
      */
     public function addLetter($name, Letter $letter): void
     {
-        $this->offsetSet($name, $letter);
+        $this->offsetSet(mb_strtolower($name), $letter);
     }
 
     /**
-     * @param $name
+     * @param mixed $name
      *
      * @return Letter
      */
     public function getLetter($name): Letter
     {
-        return $this->offsetGet($name);
+        $exists = $this->offsetExists($name);
+
+        if (!$exists) {
+            return new Undefined();
+        }
+
+        $letter = $this->offsetGet(mb_strtolower($name));
+
+        return $letter ?: new Undefined();
     }
 
+    /**
+     * @param string $char
+     *
+     * @return bool
+     */
+    protected function isLower(string $char)
+    {
+        return mb_strtolower($char) === $char;
+    }
 }

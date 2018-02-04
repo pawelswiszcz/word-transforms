@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: pawelswiszcz
@@ -8,14 +9,14 @@
 
 use WordTransforms\Word\Transform;
 
-class TransformTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+final class TransformTest extends TestCase
 {
-    /**
-     *
-     */
-    public function testTransform()
+
+    public function testResultAsString(): void
     {
-        $transform = new Transform();
-        $this->assertTrue(is_string($transform->transform('defaultTest')));
+        $transform = new Transform('Hawking', new WordTransforms\Dictionary\Provider\English());
+        $this->assertEquals($transform->transform(), 'H4w|{!ng');
     }
 }
