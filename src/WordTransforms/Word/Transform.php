@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: pawelswiszcz
@@ -8,10 +9,7 @@
 
 namespace WordTransforms\Word;
 
-use WordTransforms\Dictionary\DictionaryInterface;
 use WordTransforms\Dictionary\Provider\ProviderInterface;
-
-use WordTransforms\Letter\Schema as Letter;
 
 class Transform
 {
