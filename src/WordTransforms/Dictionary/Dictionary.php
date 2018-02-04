@@ -52,13 +52,14 @@ abstract class Dictionary extends ArrayObject implements DictionaryInterface
      */
     public function getLetter($name): Letter
     {
-        $exists = $this->offsetExists($name);
+        $key    = mb_strtolower($name);
+        $exists = $this->offsetExists($key);
 
         if (!$exists) {
             return new Undefined();
         }
 
-        $letter = $this->offsetGet(mb_strtolower($name));
+        $letter = $this->offsetGet($key);
 
         return $letter ?: new Undefined();
     }

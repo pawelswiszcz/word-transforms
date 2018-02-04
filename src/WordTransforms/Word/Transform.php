@@ -35,14 +35,15 @@ class Transform
         $this->dictionaryProvider = $dictionaryProvider;
     }
 
+    /**
+     * @return string
+     */
     final public function transform(): string
     {
         $chars     = str_split($this->string);
         $newString = '';
         foreach ($chars as $char) {
-
             $newString .= $this->dictionaryProvider->provide()->transform($char);
-
         }
 
         return $newString;
