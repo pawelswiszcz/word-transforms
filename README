@@ -10,4 +10,7 @@ to use:
        /** $result
        '!n7e|!gence !5 7he 48!|!7y 70 ch4nge.';
 
+to install:
+
+        composer require pawelswiszcz/word-transforms
 
