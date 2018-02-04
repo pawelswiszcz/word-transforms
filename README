@@ -1,0 +1,13 @@
+Word Transform
+
+to run test: ./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox tests
+
+to use:
+
+       $string    = 'Inteligence is the ability to change.';
+       $result = (new Transform($string, new English()))->transform();
+
+       /** $result
+       '!n7e|!gence !5 7he 48!|!7y 70 ch4nge.';
+
+
