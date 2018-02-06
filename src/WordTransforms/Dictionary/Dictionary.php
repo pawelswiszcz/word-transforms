@@ -18,13 +18,6 @@ use WordTransforms\Letter\Undefined;
 abstract class Dictionary extends ArrayObject implements DictionaryInterface
 {
     /**
-     * @param string $char
-     *
-     * @return string
-     */
-    abstract public function transform(string $char): string;
-
-    /**
      * @param mixed  $name
      * @param Letter $value
      */
