@@ -15,6 +15,12 @@ use PHPUnit\Framework\TestCase;
 
 final class TransformTest extends TestCase
 {
+    public function testResultIsString()
+    {
+        $transform = new Transform('randomText', new English());
+        $this->assertTrue(is_string($transform->transform()));
+    }
+
     /**
      *
      */
